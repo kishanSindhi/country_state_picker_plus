@@ -1,39 +1,30 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+```country_state_picker_plus``` is a Flutter package that provides a customizable picker widget for selecting a country, state, and city from a dropdown list. It is designed to make it easy for developers to integrate a picker widget for selecting countries, states, and cities into their Flutter projects.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+With ```country_state_picker_plus```, you can customize the appearance of the picker widget by setting properties of DropdownButton and InputDecoration. Additionally, the package supports multiple languages and locales, making it easy to create a picker widget that can be used in various countries and regions around the world.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* Select a country, state, and city from a dropdown list.
+* Customize the appearance of the picker widget with properties of ```DropdownButton``` and ```InputDecoration```.
+* Provides an ```onChanged``` callback that is triggered when the user selects a value from the picker widget.
+* Lightweight and easy to use, with minimal setup required to integrate into a Flutter project.
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+## Example
 
 ```dart
-const like = 'sample';
+CountryStatePickerPlus(
+  onCityChanged: (value) {
+    result += ' $value';
+  },
+  onCountryChanged: (value) {
+    result = value;
+  },
+  onStateChanged: (value) {
+    result += ' $value';
+  },
+);
 ```
 
-## Additional information
+## Special Thanks
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+* countries-states-cities-database

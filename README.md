@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ```country_state_picker_plus``` is a Flutter package that provides a customizable picker widget for selecting a country, state, and city from a dropdown list. It is designed to make it easy for developers to integrate a picker widget for selecting countries, states, and cities into their Flutter projects.
 
 With ```country_state_picker_plus```, you can customize the appearance of the picker widget by setting properties of DropdownButton and InputDecoration. Additionally, the package supports multiple languages and locales, making it easy to create a picker widget that can be used in various countries and regions around the world.
@@ -29,6 +29,3 @@ CountryStatePickerPlus(
 ## Special Thanks
 
 * countries-states-cities-database
-=======
-# country_state_picker_plus
->>>>>>> 0a39d5450ecd297fda116c88bf86d95564a1a7f8

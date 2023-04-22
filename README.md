@@ -26,6 +26,8 @@ CountryStatePickerPlus(
 );
 ```
 
+![Screenshot](https://github.com/kishanSindhi/country_state_picker_plus/blob/main/screenshots/country_state_picker_plus.gif?raw=true)
+
 ## Special Thanks
 
 * countries-states-cities-database

@@ -40,6 +40,7 @@ class CountryStatePickerPlus extends StatefulWidget {
   final ValueChanged<String> onCountryChanged;
   final ValueChanged<String> onStateChanged;
   final ValueChanged<String> onCityChanged;
+  final EdgeInsetsGeometry padding;
 
   const CountryStatePickerPlus({
     Key? key,
@@ -72,6 +73,7 @@ class CountryStatePickerPlus extends StatefulWidget {
     this.onCountryTap,
     this.onStateTap,
     this.decoration,
+    this.padding = EdgeInsets.zero,
     required this.onCountryChanged,
     required this.onStateChanged,
     required this.onCityChanged,
@@ -207,59 +209,19 @@ class _CountryStatePickerPlusState extends State<CountryStatePickerPlus> {
       children: <Widget>[
         DecoratedBox(
           decoration: widget.decoration ?? const BoxDecoration(),
-          child: DropdownButton<String>(
-            isExpanded: widget.isExpanded,
-            dropdownColor: widget.dropdownColor,
-            borderRadius: widget.borderRadius,
-            autofocus: widget.autoFocus,
-            disabledHint: widget.countryDisableHint,
-            elevation: widget.elevation,
-            enableFeedback: widget.enableFeedback,
-            focusColor: widget.focusColor,
-            focusNode: widget.countryFocusNode,
-            hint: Text(widget.countryHintText, style: widget.style),
-            icon: widget.icon,
-            iconDisabledColor: widget.iconDisabledColor,
-            iconEnabledColor: widget.iconEnabledColor,
-            iconSize: widget.iconSize,
-            isDense: widget.isDense,
-            itemHeight: widget.itemHeight,
-            menuMaxHeight: widget.menuMaxHeight,
-            onTap: widget.onCountryTap,
-            style: widget.style,
-            items: _country.map((String dropDownStringItem) {
-              return DropdownMenuItem<String>(
-                value: dropDownStringItem,
-                child: Text(
-                  dropDownStringItem,
-                  style: widget.style,
-                ),
-              );
-            }).toList(),
-            onChanged: (value) {
-              if (value != null) {
-                _onSelectedCountry(value);
-              }
-            },
-            value: _selectedCountry,
-            underline: widget.underline,
-          ),
-        ),
-        Visibility(
-          visible: _states.isNotEmpty,
-          child: DecoratedBox(
-            decoration: widget.decoration ?? const BoxDecoration(),
+          child: Padding(
+            padding: widget.padding,
             child: DropdownButton<String>(
               isExpanded: widget.isExpanded,
               dropdownColor: widget.dropdownColor,
               borderRadius: widget.borderRadius,
               autofocus: widget.autoFocus,
-              disabledHint: widget.stateDisableHint,
+              disabledHint: widget.countryDisableHint,
               elevation: widget.elevation,
               enableFeedback: widget.enableFeedback,
               focusColor: widget.focusColor,
-              focusNode: widget.stateFocusNode,
-              hint: Text(widget.stateHintText, style: widget.style),
+              focusNode: widget.countryFocusNode,
+              hint: Text(widget.countryHintText, style: widget.style),
               icon: widget.icon,
               iconDisabledColor: widget.iconDisabledColor,
               iconEnabledColor: widget.iconEnabledColor,
@@ -267,17 +229,63 @@ class _CountryStatePickerPlusState extends State<CountryStatePickerPlus> {
               isDense: widget.isDense,
               itemHeight: widget.itemHeight,
               menuMaxHeight: widget.menuMaxHeight,
-              onTap: widget.onStateTap,
+              onTap: widget.onCountryTap,
               style: widget.style,
-              underline: widget.underline,
-              items: _states.map((String dropDownStringItem) {
+              items: _country.map((String dropDownStringItem) {
                 return DropdownMenuItem<String>(
                   value: dropDownStringItem,
-                  child: Text(dropDownStringItem, style: widget.style),
+                  child: Text(
+                    dropDownStringItem,
+                    style: widget.style,
+                  ),
                 );
               }).toList(),
-              onChanged: (value) => _onSelectedState(value!),
-              value: _selectedState,
+              onChanged: (value) {
+                if (value != null) {
+                  _onSelectedCountry(value);
+                }
+              },
+              value: _selectedCountry,
+              underline: widget.underline,
+            ),
+          ),
+        ),
+        Visibility(
+          visible: _states.isNotEmpty,
+          child: DecoratedBox(
+            decoration: widget.decoration ?? const BoxDecoration(),
+            child: Padding(
+              padding: widget.padding,
+              child: DropdownButton<String>(
+                isExpanded: widget.isExpanded,
+                dropdownColor: widget.dropdownColor,
+                borderRadius: widget.borderRadius,
+                autofocus: widget.autoFocus,
+                disabledHint: widget.stateDisableHint,
+                elevation: widget.elevation,
+                enableFeedback: widget.enableFeedback,
+                focusColor: widget.focusColor,
+                focusNode: widget.stateFocusNode,
+                hint: Text(widget.stateHintText, style: widget.style),
+                icon: widget.icon,
+                iconDisabledColor: widget.iconDisabledColor,
+                iconEnabledColor: widget.iconEnabledColor,
+                iconSize: widget.iconSize,
+                isDense: widget.isDense,
+                itemHeight: widget.itemHeight,
+                menuMaxHeight: widget.menuMaxHeight,
+                onTap: widget.onStateTap,
+                style: widget.style,
+                underline: widget.underline,
+                items: _states.map((String dropDownStringItem) {
+                  return DropdownMenuItem<String>(
+                    value: dropDownStringItem,
+                    child: Text(dropDownStringItem, style: widget.style),
+                  );
+                }).toList(),
+                onChanged: (value) => _onSelectedState(value!),
+                value: _selectedState,
+              ),
             ),
           ),
         ),
@@ -285,34 +293,37 @@ class _CountryStatePickerPlusState extends State<CountryStatePickerPlus> {
           visible: _cities.isNotEmpty,
           child: DecoratedBox(
             decoration: widget.decoration ?? const BoxDecoration(),
-            child: DropdownButton<String>(
-              dropdownColor: widget.dropdownColor,
-              isExpanded: widget.isExpanded,
-              borderRadius: widget.borderRadius,
-              autofocus: widget.autoFocus,
-              disabledHint: widget.cityDisableHint,
-              elevation: widget.elevation,
-              enableFeedback: widget.enableFeedback,
-              focusColor: widget.focusColor,
-              focusNode: widget.cityFocusNode,
-              hint: Text(widget.cityHintText, style: widget.style),
-              icon: widget.icon,
-              iconDisabledColor: widget.iconDisabledColor,
-              iconEnabledColor: widget.iconEnabledColor,
-              iconSize: widget.iconSize,
-              isDense: widget.isDense,
-              itemHeight: widget.itemHeight,
-              menuMaxHeight: widget.menuMaxHeight,
-              onTap: widget.onCityTap,
-              style: widget.style,
-              items: _cities.map((String dropDownStringItem) {
-                return DropdownMenuItem<String>(
-                  value: dropDownStringItem,
-                  child: Text(dropDownStringItem, style: widget.style),
-                );
-              }).toList(),
-              onChanged: (value) => _onSelectedCity(value!),
-              value: _selectedCity,
+            child: Padding(
+              padding: widget.padding,
+              child: DropdownButton<String>(
+                dropdownColor: widget.dropdownColor,
+                isExpanded: widget.isExpanded,
+                borderRadius: widget.borderRadius,
+                autofocus: widget.autoFocus,
+                disabledHint: widget.cityDisableHint,
+                elevation: widget.elevation,
+                enableFeedback: widget.enableFeedback,
+                focusColor: widget.focusColor,
+                focusNode: widget.cityFocusNode,
+                hint: Text(widget.cityHintText, style: widget.style),
+                icon: widget.icon,
+                iconDisabledColor: widget.iconDisabledColor,
+                iconEnabledColor: widget.iconEnabledColor,
+                iconSize: widget.iconSize,
+                isDense: widget.isDense,
+                itemHeight: widget.itemHeight,
+                menuMaxHeight: widget.menuMaxHeight,
+                onTap: widget.onCityTap,
+                style: widget.style,
+                items: _cities.map((String dropDownStringItem) {
+                  return DropdownMenuItem<String>(
+                    value: dropDownStringItem,
+                    child: Text(dropDownStringItem, style: widget.style),
+                  );
+                }).toList(),
+                onChanged: (value) => _onSelectedCity(value!),
+                value: _selectedCity,
+              ),
             ),
           ),
         ),
